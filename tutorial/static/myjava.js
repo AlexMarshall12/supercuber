@@ -1,0 +1,1 @@
+document.write("hello from the javascript file")
