@@ -16,7 +16,6 @@ pyramid-tm==0.7
 repoze.lru==0.6
 transaction==1.4.0
 translationstring==1.1
-tutorial==0.0
 venusian==1.0a7
 waitress==0.8.2
 wsgiref==0.1.2
