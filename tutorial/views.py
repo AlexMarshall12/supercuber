@@ -92,7 +92,7 @@ def home_page(request):
         k=Key(bucket)
         k.key='%(pagename)s' % {'pagename':name}
         k.set_contents_from_string(html_string, headers={'Content-Type': 'text/html'})
-        return HTTPFound(location="https://s3.amazon.com.alexmarshalltest/%(pagename)s" % {'pagename':name})
+        return HTTPFound(location="https://s3.amazon.com/alexmarshalltest/%(pagename)s" % {'pagename':name})
 
     return {}                                                       
 
