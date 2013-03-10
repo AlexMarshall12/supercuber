@@ -5,6 +5,7 @@ import operator
 import os
 import json
 import boto
+import shortuuid
 
 from docutils.core import publish_parts
 
@@ -24,15 +25,13 @@ from .models import (
     Page,
     )
 
-# regular expression used to find WikiWords
-wikiwords = re.compile(r"\b([A-Z]\w+[A-Z]+\w+)")
 
 
 @view_config(route_name='home_page', renderer='templates/edit.pt')
 def home_page(request):
     if 'form.submitted' in request.params:
         name= request.params['name']
-        body = request.params['body']
+       
         input_file=request.POST['stl'].file
         vertices, normals = [],[]
         for line in input_file:
@@ -86,13 +85,17 @@ def home_page(request):
         data=[vertices,ordering]
         jsdata=json.dumps(data)
         renderer_dict = dict(name=name,data=jsdata)
+        
+        path=shortuuid.uuid()
         html_string = render('tutorial:templates/view.pt', renderer_dict, request=request)
         s3=boto.connect_s3(aws_access_key_id = 'AKIAIJEXF25B6H5F4L7Q', aws_secret_access_key = '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' )
         bucket=s3.get_bucket('alexmarshalltest')
         k=Key(bucket)
-        k.key='%(pagename)s' % {'pagename':name}
+        k.key='%(path)s' % {'path':path}
         k.set_contents_from_string(html_string, headers={'Content-Type': 'text/html'})
-        return HTTPFound(location="https://s3.amazonaws.com/alexmarshalltest/%(pagename)s" % {'pagename':name})
+        k.set_acl('public-read')
+
+        return HTTPFound(location="https://s3.amazonaws.com/alexmarshalltest/%(path)s" % {'path':path})
 
     return {}                                                       
 

@@ -110,6 +110,7 @@ ol ol ul, ol ul ul, ol menu ul, ol dir ul, ol ol menu, ol ul menu, ol menu menu,
 p
 {
   line-height: 1.5em;
+  margin-left: 100px;
 }
 
 h1
@@ -267,8 +268,9 @@ body h1, body h2, body h3, body h4, body h5, body h6
 
 #middle
 {
-  width: 100%;
+  width: 50px;
   height: 100px;
+  margin-left: 100px;
   background: url(middlebg.png) repeat-x;
   border-top: 2px solid #fff;
   border-bottom: 2px solid #b2b2b2;

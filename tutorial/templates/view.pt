@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>Thingiview.js Pre-Parsed JSON Inline Example</title>
+  <title>SuperCuber</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -17,15 +17,7 @@
   
   <script type="text/javascript" src="Three.js"></script>
   <script type="text/javascript" src="plane.js"></script>
-  <script type="text/javascript" src="thingiview.js"></script>
-  <script type="text/javascript" src="myjava.js"></script>
-  <script type="text/javascript">
-   <!-- to hide script contents from old browsers
-   document.write("Hello World!")
-   // end hiding contents from old browsers  -->
-   </script>
-
-   
+  <script type="text/javascript" src="thingiview.js"></script>   
   
   <script>
     window.onload = function() {
@@ -47,17 +39,14 @@
       thingiview.loadArray(eval(voltron));      
     }
   </script>
-  <p>data</p>
+  
 </head>
 <body>
-
+ 
 <div id="prompt">
   <!-- if IE without GCF, prompt goes here -->
 </div>
 
-<header>
-  <h1><a href="http://github.com/tbuser/thingiview.js">Thingiview.js</a> Dustin is GAY!</h1>
-</header>
 
 <div id="sidebar" style="float:right;width:40%">
 <!--
@@ -69,34 +58,11 @@
 -->
 </div>
 
-<p>
-  <input onclick="thingiview.setCameraView('top');" type="button" value="Top" /> 
-  <input onclick="thingiview.setCameraView('side');" type="button" value="Side" /> 
-  <input onclick="thingiview.setCameraView('bottom');" type="button" value="Bottom" /> 
-  <input onclick="thingiview.setCameraView('diagonal');" type="button" value="Diagonal" /> 
- 
-  <input onclick="thingiview.setCameraZoom(5);" type="button" value="Zoom +" /> 
-  <input onclick="thingiview.setCameraZoom(-5);" type="button" value="Zoom -" /> 
- 
-  Rotation: <input onclick="thingiview.setRotation(true);" type="button" value="on" /> | <input onclick="thingiview.setRotation(false);" type="button" value="off" />
-</p>
-
 <div id="viewer" style="width:400px;height:400px"></div>
 
-<p>
-  <input onclick="thingiview.setObjectMaterial('wireframe');" type="button" value="Wireframe" /> 
-  <input onclick="thingiview.setObjectMaterial('solid');" type="button" value="Solid" />
+ <p>
+ ${structure:name}
+
 </p>
-
-<p>
-  Plane: <a href="#" onclick="thingiview.setShowPlane(false)">Hide</a> | <a href="#" onclick="thingiview.setShowPlane(true)">Show</a><br/>
-  Background Color: <a href="#" onclick="thingiview.setBackgroundColor('#606060')">Gray</a> | <a href="#" onclick="thingiview.setBackgroundColor('#ffffff')">White</a> | <a href="#" onclick="thingiview.setBackgroundColor('#000000')">Black</a><br/>
-  Object Color: <a href="#" onclick="thingiview.setObjectColor('#ffffff')">White</a> | <a href="#" onclick="thingiview.setObjectColor('#aa0000')">Red</a> | <a href="#" onclick="thingiview.setObjectColor('#CDFECD')">Green</a> | <a href="#" onclick="thingiview.setObjectColor('#C0D8F0')">Blue</a><br/>
-</p>
-
-<footer>
-  &larr; <a href="index.html">Other Examples</a>
-</footer>
-
 </body>
 </html>
