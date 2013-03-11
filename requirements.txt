@@ -14,6 +14,7 @@ pyramid==1.4
 pyramid-debugtoolbar==1.0.4
 pyramid-tm==0.7
 repoze.lru==0.6
+shortuuid==0.1
 transaction==1.4.0
 translationstring==1.1
 venusian==1.0a7
