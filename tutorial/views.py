@@ -89,13 +89,13 @@ def home_page(request):
         path=shortuuid.uuid()
         html_string = render('tutorial:templates/view.pt', renderer_dict, request=request)
         s3=boto.connect_s3(aws_access_key_id = 'AKIAIJEXF25B6H5F4L7Q', aws_secret_access_key = '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' )
-        bucket=s3.get_bucket('alexmarshalltest')
+        bucket=s3.get_bucket('cubes.supercuber.com')
         k=Key(bucket)
         k.key='%(path)s' % {'path':path}
         k.set_contents_from_string(html_string, headers={'Content-Type': 'text/html'})
         k.set_acl('public-read')
 
-        return HTTPFound(location="https://s3.amazonaws.com/alexmarshalltest/%(path)s" % {'path':path})
+        return HTTPFound(location="https://cubes.supercuber.com/%(path)s" % {'path':path})
 
     return {}                                                       
 
