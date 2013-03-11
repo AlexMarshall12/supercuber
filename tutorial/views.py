@@ -95,7 +95,7 @@ def home_page(request):
         k.set_contents_from_string(html_string, headers={'Content-Type': 'text/html'})
         k.set_acl('public-read')
 
-        return HTTPFound(location="https://cubes.supercuber.com/%(path)s" % {'path':path})
+        return HTTPFound(location="http://cubes.supercuber.com/%(path)s" % {'path':path})
 
     return {}                                                       
 
