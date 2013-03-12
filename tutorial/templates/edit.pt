@@ -47,6 +47,7 @@ function limitText(limitField, limitNum) {
 </p>
 
 </div>
+
 </body>
 <style>
 body {
@@ -68,7 +69,7 @@ form {
 	width:600px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color:rgba(220,220,220,0.65);
+	background-color:rgba(220,220,220,0.75);
 	border: 1px;
 	text-align: center;
 }

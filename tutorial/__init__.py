@@ -19,8 +19,6 @@ def main(global_config, **settings):
     
     config.add_static_view(name='static',path='tutorial:static/')
     config.add_route('home_page', '/')
-    config.add_route('view_page', '/{pagename}')
-    config.add_route('add_page', '/add_page/{pagename}')
-    config.add_route('edit_page', '/{pagename}/edit_page')
+  
     config.scan()
     return config.make_wsgi_app()
