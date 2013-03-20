@@ -6,6 +6,7 @@ import os
 import json
 import boto
 import shortuuid
+import struct
 
 from docutils.core import publish_parts
 
@@ -34,55 +35,67 @@ def home_page(request):
        
         input_file=request.POST['stl'].file
         vertices, normals = [],[]
-        for line in input_file:
-            parts = line.split()
-            if parts[0] == 'vertex':
-                vertices.append(map(float, parts[1:4]))
-            elif parts[0] == 'facet':
-                normals.append(map(float, parts[2:5]))
+        if input_file.read(5) == b'solid':
+            for line in input_file:
+                parts = line.split()
+                if parts[0] == 'vertex':
+                    vertices.append(map(float, parts[1:4]))
+                elif parts[0] == 'facet':
+                    normals.append(map(float, parts[2:5]))
 
-        ordering=[]
-        N=len(normals)
-
-
-        for i in range(0,N):
-            p1=vertices[3*i]
-            p2=vertices[3*i+1]
-            p3=vertices[3*i+2]
-
-            x1=p1[0]
-            y1=p1[1]
-            z1=p1[2]
-
-            x2=p2[0]
-            y2=p2[1]
-            z2=p2[2]
-
-            x3=p3[0]
-            y3=p3[1]
-            z3=p3[2]
-
-            a=[x2-x1,y2-y1,z2-z1]
-            b=[x3-x1,y3-y1,z3-z1]
-
-            a1=x2-x1
-            a2=y2-y1
-            a3=z2-z1
-            b1=x3-x1
-            b2=y3-y1
-            b3=z3-z1
-
-            normal=normals[i]
-
-            cross_vector=[a2*b3-a3*b2,a3*b1-a1*b3,a1*b2-a2*b1]
-            dot=reduce( operator.add, map( operator.mul, cross_vector, normal))
-
-            if dot>0:
+            ordering=[]
+            N=len(normals)
+            for i in range(0,N):
                 ordering.append([3*i,3*i+1,3*i+2])
-            else:
-                ordering.append([3*i,3*i+1,3*i+2])
+            data=[vertices,ordering]
+        else:
+            f=input_file
+            f.seek(0)
+            points=[]
+            triangles=[]
+            normals=[]
+            def unpack (f, sig, l):
+                s = f.read (l)
+                
+                return struct.unpack(sig, s)
 
-        data=[vertices,ordering]
+            def read_triangle(f):
+                n = unpack(f,"<3f", 12)
+                p1 = unpack(f,"<3f", 12)
+                p2 = unpack(f,"<3f", 12)
+                p3 = unpack(f,"<3f", 12)
+                b = unpack(f,"<h", 2)
+
+                normals.append(n)
+                l = len(points)
+                points.append(p1)
+                points.append(p2)
+                points.append(p3)
+                triangles.append((l, l+1, l+2))
+                #bytecount.append(b[0])
+
+
+            def read_length(f):
+                length = struct.unpack("@i", f.read(4))
+                return length[0]
+
+            def read_header(f):
+                f.seek(f.tell()+80)
+
+
+            read_header(f)
+            l = read_length(f)
+
+            try:
+                while True:
+                   read_triangle(f)
+            except Exception, e:
+                print "Exception",e[0]
+            
+            #write_as_ascii(outfilename)
+            data=[points,triangles]
+
+            
         jsdata=json.dumps(data)
         renderer_dict = dict(name=name,data=jsdata)
         

@@ -32,10 +32,10 @@ function limitText(limitField, limitNum) {
 <input type="submit" name='form.submitted' value="Save"/>
 </form>
 
-<p>    Welcome to SuperCuber. Upload the stl file that you are interested in sharing to the form above. Enter a brief description of the file (how it was made, what the shape is for, ect.) Click save and wait for it to process. You will eventually be redirected to a web based 3D model of the stl data that you can view but not edit (such <a href="http://cubes.supercuber.com/g6KwD7946eQYwrXTF9KXkm">this example</a>). You can click to rotate the model and zoom in or out by scrolling. These models will be available for you to share anywhere on the web (just copy the url) for an undetermined period of time (30 days?). I am still in the process of determining logistics of hosting, features, ect. I welcome any feedback in the form below. A few notes first:</p>
+<p>    Welcome to SuperCuber. Upload the stl file that you are interested in sharing to the form above. Enter a brief description of the file (how it was made, what the shape is for, ect.) Click save and wait for it to process. You will eventually be redirected to a web based 3D model of the stl data that you can view but not edit (such as <a href="http://cubes.supercuber.com/g6KwD7946eQYwrXTF9KXkm">this example</a>). You can click to rotate the model and zoom in or out by scrolling. These models will be available for you to share anywhere on the web by linking the url or embedding in an iframe. I am still in the process of determining logistics of hosting, features, ect. I welcome any feedback in the form below. A few notes first:</p>
 <p>
 <ul>
-	<li>Currently, SuperCuber can only accept ASCII stl files. Support for binary STL format and other formats such as AMF or OBJ are coming soon. Development will be based on demand, so be sure to voice your interest below. </li>
+	<li>Currently, SuperCuber can accept ASCII and binary stl files. Support for other formats such as AMF or OBJ are coming soon. Development will be based on demand, so be sure to voice your interest below. </li>
 	<li>When you click on the save button, be patient. It has to parse the data, create a new html page, and store it on a new url. This should be the longest it ever takes to load. If you try and load an already existing url, it should be much faster. </li>
 	<li> This website renders models with tony buser's open source thingiview.js</li> 
 	<li> There may be compatibility issues with your browser. The best I can suggest is for you to not use Internet Explorer and check to see that your browser is WebGl enabled. </li>
@@ -85,7 +85,7 @@ form {
 	width:600px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color:rgba(220,220,220,0.75);
+	background-color:rgb(220,220,220);
 	border: 1px;
 	text-align: center;
 }
