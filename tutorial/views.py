@@ -46,7 +46,7 @@ def home_page(request):
             ordering=[]
             N=len(normals)
             for i in range(0,N):
-                ordering.append([3*i,3*i+2,3*i+1])
+                ordering.append([3*i,3*i+1,3*i+2])
             data=[vertices,ordering]
         else:
             f=input_file
